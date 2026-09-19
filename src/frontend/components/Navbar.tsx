@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBulkModal
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 lg:px-8 py-3.5 transition-all shadow-sm">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 lg:px-8 py-4 transition-all shadow-sm">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Left Brand info */}
         <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
