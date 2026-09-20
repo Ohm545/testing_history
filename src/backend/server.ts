@@ -1,13 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { eventsRouter } from './routes/events';
 import { scenariosRouter } from './routes/scenarios';
 import { systemRouter } from './routes/system';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -44,7 +40,7 @@ app.use('/', systemRouter);
 app.use('/api', systemRouter);
 
 // Serve React frontend (built by vite) in production
-const distPath = path.resolve(__dirname, '../../../dist');
+const distPath = path.resolve(process.cwd(), 'dist');
 app.use(express.static(distPath));
 
 // SPA fallback — all unmatched routes serve index.html
