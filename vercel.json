@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/events",
+      "destination": "/api/events"
+    },
+    {
+      "source": "/events/:match*",
+      "destination": "/api/events"
+    },
+    {
+      "source": "/demo/:match*",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/reset",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/:match*",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

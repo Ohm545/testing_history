@@ -7,7 +7,7 @@ import { systemRouter } from './routes/system';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS for Vite frontend
+// Enable CORS for frontend and external callers
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -21,17 +21,22 @@ app.use((req, _res, next) => {
   const start = Date.now();
   next();
   const duration = Date.now() - start;
-  // Compact console log
-  if (req.path !== '/health') {
+  if (req.path !== '/health' && req.path !== '/api/health') {
     console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.path} - ${duration}ms`);
   }
 });
 
-// Mount Routes
+// Mount Routes (supports both direct and /api/ prefixed calls for Vercel)
 app.use('/events', eventsRouter);
+app.use('/api/events', eventsRouter);
+
 app.use('/demo/scenario', scenariosRouter);
 app.use('/demo/scenarios', scenariosRouter);
+app.use('/api/demo/scenario', scenariosRouter);
+app.use('/api/demo/scenarios', scenariosRouter);
+
 app.use('/', systemRouter);
+app.use('/api', systemRouter);
 
 // Fallback 404
 app.use((_req, res) => {
@@ -41,11 +46,15 @@ app.use((_req, res) => {
   });
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`JourneyFlow Simulator Backend running at http://localhost:${PORT}`);
-  console.log(`- Health: http://localhost:${PORT}/health`);
-  console.log(`- Events: http://localhost:${PORT}/events`);
-  console.log(`- Scenarios: http://localhost:${PORT}/demo/scenario/:id`);
-});
+let server: any = null;
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log(`JourneyFlow Simulator Backend running at http://localhost:${PORT}`);
+    console.log(`- Health: http://localhost:${PORT}/health`);
+    console.log(`- Events: http://localhost:${PORT}/events`);
+    console.log(`- Scenarios: http://localhost:${PORT}/demo/scenario/:id`);
+  });
+}
 
 export { app, server };
+export default app;
