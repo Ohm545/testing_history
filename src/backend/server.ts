@@ -1,8 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { eventsRouter } from './routes/events';
 import { scenariosRouter } from './routes/scenarios';
 import { systemRouter } from './routes/system';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,12 +43,13 @@ app.use('/api/demo/scenarios', scenariosRouter);
 app.use('/', systemRouter);
 app.use('/api', systemRouter);
 
-// Fallback 404
-app.use((_req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Endpoint not found on JourneyFlow simulator backend'
-  });
+// Serve React frontend (built by vite) in production
+const distPath = path.resolve(__dirname, '../../../dist');
+app.use(express.static(distPath));
+
+// SPA fallback — all unmatched routes serve index.html
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 let server: any = null;
