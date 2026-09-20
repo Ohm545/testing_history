@@ -47,18 +47,18 @@ export const ScenarioSection: React.FC<ScenarioSectionProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-2xl font-bold tracking-tight text-white">Demo Scenarios</h3>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <h3 className="text-2xl font-bold tracking-tight text-slate-900">Demo Scenarios</h3>
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
               15 Preconfigured
             </span>
           </div>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             Choose a scenario to generate a realistic sequence of customer events.
           </p>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex items-center gap-1.5 p-1 bg-gray-900/90 border border-gray-800 rounded-xl overflow-x-auto max-w-full">
+        <div className="flex items-center gap-1.5 p-1 bg-white border border-slate-200 rounded-xl shadow-xs overflow-x-auto max-w-full">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -67,15 +67,15 @@ export const ScenarioSection: React.FC<ScenarioSectionProps> = ({
                 onClick={() => setActiveCategory(cat.id as any)}
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800/60'
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 {cat.icon}
                 <span>{cat.label}</span>
                 <span
                   className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                    isActive ? 'bg-indigo-700 text-white' : 'bg-gray-800 text-gray-400'
+                    isActive ? 'bg-indigo-700 text-white' : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   {cat.count}

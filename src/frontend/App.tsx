@@ -86,8 +86,7 @@ export const App: React.FC = () => {
         setMetrics(metricsRes.metrics);
       }
       setApiConnected(true);
-    } catch (err: any) {
-      // Check health directly if query failed
+    } catch {
       try {
         await api.checkHealth();
         setApiConnected(true);
@@ -120,7 +119,6 @@ export const App: React.FC = () => {
       const res = await api.runScenario(scenarioId);
 
       if (res && res.success) {
-        // Refresh event stream & metrics
         await loadData();
 
         if (res.analysis) {
@@ -314,7 +312,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-gray-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       {/* Top Navbar */}
       <Navbar
         apiConnected={apiConnected}
@@ -328,17 +326,17 @@ export const App: React.FC = () => {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6">
         {/* Offline Alert if Backend is Disconnected */}
         {!apiConnected && (
-          <div className="mb-6 p-4 rounded-xl border border-rose-500/40 bg-rose-950/30 text-rose-200 text-xs font-mono flex items-center justify-between">
+          <div className="mb-6 p-4 rounded-xl border border-rose-200 bg-rose-50 text-rose-800 text-xs font-mono flex items-center justify-between shadow-xs">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
               <span>
                 Unable to reach event ingestion API. Make sure the backend is running at{' '}
-                <strong className="text-white underline">http://localhost:3000</strong>.
+                <strong className="text-slate-900 underline">http://localhost:3000</strong>.
               </span>
             </div>
             <button
               onClick={loadData}
-              className="px-3 py-1 bg-rose-600/30 hover:bg-rose-600/50 rounded-lg text-rose-100 text-xs font-semibold transition-colors"
+              className="px-3 py-1 bg-rose-100 hover:bg-rose-200 border border-rose-300 rounded-lg text-rose-900 text-xs font-semibold transition-colors"
             >
               Retry Connection
             </button>
@@ -370,8 +368,8 @@ export const App: React.FC = () => {
         {/* Live Ingested Events Stream Section */}
         <section id="events-section" className="mb-12 pt-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-2xl font-bold tracking-tight text-white">Live Event Stream</h3>
-            <span className="text-xs font-mono text-gray-400">
+            <h3 className="text-2xl font-bold tracking-tight text-slate-900">Live Event Stream</h3>
+            <span className="text-xs font-mono text-slate-500">
               Preserving full identity attributes & evidence
             </span>
           </div>
@@ -403,10 +401,10 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-gray-800/80 bg-gray-950/60 py-6 px-4 lg:px-8 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
+      <footer className="w-full border-t border-slate-200 bg-white py-6 px-4 lg:px-8 mt-auto shadow-xs">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            <span className="text-indigo-400 font-semibold">JourneyFlow Simulator</span> — Cross-Channel Identity Resolution & Customer Journey Intelligence
+            <span className="text-indigo-600 font-semibold">JourneyFlow Simulator</span> — Cross-Channel Identity Resolution & Customer Journey Intelligence
           </div>
           <div className="flex items-center gap-4 text-[11px]">
             <span>POST /events</span>

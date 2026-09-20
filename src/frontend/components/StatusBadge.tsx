@@ -10,28 +10,28 @@ interface IdentityBadgeProps {
 export const IdentityBadge: React.FC<IdentityBadgeProps> = ({ status = 'UNRESOLVED', size = 'sm' }) => {
   const configs: Record<IdentityStatus, { bg: string; text: string; border: string; icon: React.ReactNode }> = {
     RESOLVED: {
-      bg: 'bg-emerald-500/10',
-      text: 'text-emerald-400',
-      border: 'border-emerald-500/30',
-      icon: <CheckCircle className="w-3.5 h-3.5" />
+      bg: 'bg-emerald-50',
+      text: 'text-emerald-700',
+      border: 'border-emerald-300',
+      icon: <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
     },
     UNRESOLVED: {
-      bg: 'bg-gray-500/10',
-      text: 'text-gray-400',
-      border: 'border-gray-500/30',
-      icon: <HelpCircle className="w-3.5 h-3.5" />
+      bg: 'bg-slate-100',
+      text: 'text-slate-600',
+      border: 'border-slate-300',
+      icon: <HelpCircle className="w-3.5 h-3.5 text-slate-500" />
     },
     AMBIGUOUS: {
-      bg: 'bg-amber-500/10',
-      text: 'text-amber-400',
-      border: 'border-amber-500/30',
-      icon: <AlertCircle className="w-3.5 h-3.5" />
+      bg: 'bg-amber-50',
+      text: 'text-amber-800',
+      border: 'border-amber-300',
+      icon: <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
     },
     CONFLICT: {
-      bg: 'bg-rose-500/10',
-      text: 'text-rose-400',
-      border: 'border-rose-500/30',
-      icon: <XCircle className="w-3.5 h-3.5" />
+      bg: 'bg-rose-50',
+      text: 'text-rose-700',
+      border: 'border-rose-300',
+      icon: <XCircle className="w-3.5 h-3.5 text-rose-600" />
     }
   };
 
@@ -55,31 +55,31 @@ export const ChannelBadge: React.FC<ChannelBadgeProps> = ({ channel, size = 'sm'
   const configs: Record<EventChannel, { label: string; bg: string; text: string; border: string; icon: React.ReactNode }> = {
     web: {
       label: 'WEB',
-      bg: 'bg-blue-500/10',
-      text: 'text-blue-400',
-      border: 'border-blue-500/30',
-      icon: <Globe className="w-3.5 h-3.5" />
+      bg: 'bg-blue-50',
+      text: 'text-blue-700',
+      border: 'border-blue-200',
+      icon: <Globe className="w-3.5 h-3.5 text-blue-600" />
     },
     mobile_app: {
       label: 'MOBILE APP',
-      bg: 'bg-purple-500/10',
-      text: 'text-purple-400',
-      border: 'border-purple-500/30',
-      icon: <Smartphone className="w-3.5 h-3.5" />
+      bg: 'bg-purple-50',
+      text: 'text-purple-700',
+      border: 'border-purple-200',
+      icon: <Smartphone className="w-3.5 h-3.5 text-purple-600" />
     },
     call_center: {
       label: 'CALL CENTER',
-      bg: 'bg-amber-500/10',
-      text: 'text-amber-400',
-      border: 'border-amber-500/30',
-      icon: <PhoneCall className="w-3.5 h-3.5" />
+      bg: 'bg-amber-50',
+      text: 'text-amber-800',
+      border: 'border-amber-200',
+      icon: <PhoneCall className="w-3.5 h-3.5 text-amber-600" />
     },
     physical_store: {
       label: 'STORE',
-      bg: 'bg-emerald-500/10',
-      text: 'text-emerald-400',
-      border: 'border-emerald-500/30',
-      icon: <Store className="w-3.5 h-3.5" />
+      bg: 'bg-emerald-50',
+      text: 'text-emerald-700',
+      border: 'border-emerald-200',
+      icon: <Store className="w-3.5 h-3.5 text-emerald-600" />
     }
   };
 

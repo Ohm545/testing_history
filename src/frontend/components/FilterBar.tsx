@@ -57,19 +57,19 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   const hasActiveFilters = channel !== 'all' || eventType !== 'all' || scenario !== 'all' || search.trim() !== '';
 
   return (
-    <div className="mb-4 p-4 rounded-xl border border-gray-800 bg-gray-900/60 backdrop-blur-sm">
+    <div className="mb-4 p-4 rounded-xl border border-slate-200 bg-white shadow-xs">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
         {/* Filter selectors */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 flex-1">
           {/* Search box */}
           <div className="relative">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
             <input
               type="text"
               placeholder="Search ID, customer, phone..."
               value={search}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-gray-950 border border-gray-800 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-colors"
             />
           </div>
 
@@ -78,7 +78,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <select
               value={channel}
               onChange={(e) => onChannelChange(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-lg bg-gray-950 border border-gray-800 text-xs text-gray-200 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white transition-colors"
             >
               <option value="all">All Channels</option>
               <option value="web">Web</option>
@@ -93,7 +93,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <select
               value={eventType}
               onChange={(e) => onEventTypeChange(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-lg bg-gray-950 border border-gray-800 text-xs text-gray-200 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white transition-colors"
             >
               {eventTypes.map(t => (
                 <option key={t.value} value={t.value}>{t.label}</option>
@@ -106,7 +106,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <select
               value={scenario}
               onChange={(e) => onScenarioChange(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-lg bg-gray-950 border border-gray-800 text-xs text-gray-200 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white transition-colors"
             >
               <option value="all">All Scenarios</option>
               {scenarios.map(s => (
@@ -117,11 +117,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Action buttons: Reset Filters & Exports */}
-        <div className="flex items-center gap-2 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-gray-800">
+        <div className="flex items-center gap-2 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-200">
           {hasActiveFilters && (
             <button
               onClick={onResetFilters}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-medium transition-colors"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium transition-colors"
               title="Reset all filters"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -129,13 +129,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             </button>
           )}
 
-          <span className="text-xs font-mono text-gray-400 hidden xl:inline px-1">
-            Matching: <strong className="text-white">{totalFilteredEvents}</strong>
+          <span className="text-xs font-mono text-slate-500 hidden xl:inline px-1">
+            Matching: <strong className="text-slate-900">{totalFilteredEvents}</strong>
           </span>
 
           <button
             onClick={onExportJson}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 hover:text-indigo-200 text-xs font-semibold transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 text-xs font-semibold transition-all shadow-2xs active:scale-95"
             title="Download currently filtered events as JSON"
           >
             <Download className="w-3.5 h-3.5" />
@@ -144,7 +144,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
           <button
             onClick={onExportCsv}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/30 text-emerald-300 hover:text-emerald-200 text-xs font-semibold transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-semibold transition-all shadow-2xs active:scale-95"
             title="Download currently filtered events as CSV"
           >
             <FileSpreadsheet className="w-3.5 h-3.5" />

@@ -41,24 +41,24 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
   ];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-sm flex justify-end transition-opacity">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-xs flex justify-end transition-opacity">
       <div
-        className="w-full max-w-xl bg-[#0F172A] border-l border-gray-800 h-full shadow-2xl flex flex-col transform transition-transform duration-300"
+        className="w-full max-w-xl bg-white border-l border-slate-200 h-full shadow-2xl flex flex-col transform transition-transform duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drawer Header */}
-        <div className="p-5 border-b border-gray-800 flex items-center justify-between bg-gray-950/80">
+        <div className="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
+            <div className="p-2 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-600">
               <Hash className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-mono font-bold text-white tracking-tight">{event.event_id}</h3>
+                <h3 className="text-base font-mono font-bold text-slate-900 tracking-tight">{event.event_id}</h3>
                 <IdentityBadge status={event.identity_status} size="sm" />
               </div>
-              <span className="text-xs text-gray-400 font-mono flex items-center gap-1.5 mt-0.5">
-                <Clock className="w-3.5 h-3.5 text-gray-500" />
+              <span className="text-xs text-slate-500 font-mono flex items-center gap-1.5 mt-0.5">
+                <Clock className="w-3.5 h-3.5 text-slate-400" />
                 {event.timestamp}
               </span>
             </div>
@@ -67,16 +67,16 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopyJson}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-medium text-gray-200 border border-gray-700 transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-xs font-medium text-slate-700 border border-slate-300 transition-colors shadow-2xs"
               title="Copy event payload"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied!' : 'Copy JSON'}</span>
             </button>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
               aria-label="Close drawer"
             >
               <X className="w-5 h-5" />
@@ -89,8 +89,8 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
           {/* Key Attributes Grid */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <ShieldCheck className="w-4 h-4 text-indigo-400" />
-              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gray-400">
+              <ShieldCheck className="w-4 h-4 text-indigo-600" />
+              <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600">
                 Extracted Identity & Event Attributes
               </h4>
             </div>
@@ -99,9 +99,9 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
               {fields.map((f, i) => (
                 <div
                   key={i}
-                  className="p-2.5 rounded-lg bg-gray-900/80 border border-gray-800/80 flex flex-col justify-between"
+                  className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex flex-col justify-between"
                 >
-                  <span className="text-[10px] uppercase font-mono text-gray-500 font-semibold mb-1">
+                  <span className="text-[10px] uppercase font-mono text-slate-400 font-semibold mb-1">
                     {f.label}
                   </span>
                   {f.isCustom ? (
@@ -112,12 +112,12 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
                     <span
                       className={`truncate ${f.isMono ? 'font-mono' : ''} ${
                         f.highlight
-                          ? 'text-indigo-400 font-bold'
+                          ? 'text-indigo-600 font-bold'
                           : f.isCust && f.value !== 'null'
-                          ? 'text-emerald-400 font-bold'
+                          ? 'text-emerald-700 font-bold'
                           : f.value === 'null'
-                          ? 'text-gray-600'
-                          : 'text-gray-200 font-medium'
+                          ? 'text-slate-400'
+                          : 'text-slate-800 font-medium'
                       }`}
                     >
                       {f.value}
@@ -132,12 +132,12 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
           {event.data && Object.keys(event.data).length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Database className="w-4 h-4 text-cyan-400" />
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gray-400">
+                <Database className="w-4 h-4 text-cyan-600" />
+                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600">
                   Custom Event Data Payload (data)
                 </h4>
               </div>
-              <div className="p-3.5 rounded-xl bg-gray-950 border border-gray-800 font-mono text-xs text-cyan-300 overflow-x-auto">
+              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs text-cyan-300 overflow-x-auto shadow-inner">
                 <pre>{JSON.stringify(event.data, null, 2)}</pre>
               </div>
             </div>
@@ -145,11 +145,11 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
 
           {/* Candidates if ambiguity / conflict */}
           {event.candidates && event.candidates.length > 0 && (
-            <div className="p-3.5 rounded-xl border border-amber-500/30 bg-amber-950/20">
-              <span className="text-[11px] font-mono text-amber-400 font-bold block mb-1.5 uppercase">
+            <div className="p-3.5 rounded-xl border border-amber-300 bg-amber-50">
+              <span className="text-[11px] font-mono text-amber-800 font-bold block mb-1.5 uppercase">
                 Identity Resolution Candidates
               </span>
-              <ul className="list-disc list-inside text-xs font-mono text-amber-200 space-y-1">
+              <ul className="list-disc list-inside text-xs font-mono text-amber-900 space-y-1">
                 {event.candidates.map((cand, idx) => (
                   <li key={idx}>{cand}</li>
                 ))}
@@ -158,20 +158,20 @@ export const EventDetailsDrawer: React.FC<EventDetailsDrawerProps> = ({ event, o
           )}
 
           {/* Expandable Raw Event JSON */}
-          <div className="border border-gray-800 rounded-xl overflow-hidden bg-gray-950">
+          <div className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-xs">
             <button
               onClick={() => setShowRawJson(!showRawJson)}
-              className="w-full px-4 py-3 bg-gray-900/90 hover:bg-gray-800 text-left text-xs font-mono font-semibold text-gray-300 flex items-center justify-between transition-colors"
+              className="w-full px-4 py-3 bg-slate-50 hover:bg-slate-100 text-left text-xs font-mono font-semibold text-slate-700 flex items-center justify-between transition-colors border-b border-slate-200"
             >
               <div className="flex items-center gap-2">
-                <Code className="w-4 h-4 text-indigo-400" />
+                <Code className="w-4 h-4 text-indigo-600" />
                 <span>Raw Event JSON (Full Schema)</span>
               </div>
-              <span className="text-[11px] text-gray-500">{showRawJson ? 'Hide' : 'Expand'}</span>
+              <span className="text-[11px] text-slate-500">{showRawJson ? 'Hide' : 'Expand'}</span>
             </button>
 
             {showRawJson && (
-              <div className="p-4 text-xs font-mono text-gray-300 overflow-x-auto max-h-72">
+              <div className="p-4 text-xs font-mono bg-slate-900 text-slate-200 overflow-x-auto max-h-72">
                 <pre>{JSON.stringify(event, null, 2)}</pre>
               </div>
             )}
